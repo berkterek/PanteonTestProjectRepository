@@ -2,7 +2,7 @@
 {
     public interface IPlayerInput
     {
-        float Horizonal { get; }
+        float Vertical { get; }
         float MouseX { get; }
         bool Jump { get; }
     }

@@ -24,9 +24,9 @@ namespace PanteonTestProject.Movements
             _jump = jump;
         }
 
-        public void TickFixed(float horizontal)
+        public void TickFixed(float vertical)
         {
-            Vector3 transformDirection = _characterController.transform.TransformDirection(horizontal,0f,0f);
+            Vector3 transformDirection = _characterController.transform.TransformDirection(0f, 0f,vertical);
             Vector3 flatMovement = transformDirection * Time.deltaTime * _moveSpeed;
             _currentMovement = new Vector3(flatMovement.x, _currentMovement.y, flatMovement.z);
 

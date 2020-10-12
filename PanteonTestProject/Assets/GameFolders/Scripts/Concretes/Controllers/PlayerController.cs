@@ -18,7 +18,7 @@ namespace PanteonTestProject.Controllers
         IPlayerInput _input;
         IMover _mover;
         Jump _jump;
-        float _horizantal;
+        float _vertical;
 
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace PanteonTestProject.Controllers
 
         private void Update()
         {
-            _horizantal = _input.Horizonal;
+            _vertical = _input.Vertical;
 
             if (_input.Jump)
             {
@@ -39,7 +39,7 @@ namespace PanteonTestProject.Controllers
 
         private void FixedUpdate()
         {
-            _mover.TickFixed(_horizantal);
+            _mover.TickFixed(_vertical);
         }
     }
 }
