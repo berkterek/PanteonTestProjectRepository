@@ -14,9 +14,11 @@ namespace PanteonTestProject.Controllers
         [SerializeField] float gravity = 0.5f;
         [SerializeField] float jumpForce = 0.2f;
         [SerializeField] float moveSpeed = 10f;
+        [SerializeField] float turnSpeed = 5f;
 
         IPlayerInput _input;
         IMover _mover;
+        IRotator _rotator;
         Jump _jump;
         float _vertical;
 
@@ -25,6 +27,7 @@ namespace PanteonTestProject.Controllers
             _input = new PcInput();
             _jump = new Jump(gravity,jumpForce);
             _mover = new Mover(GetComponent<CharacterController>(),_jump,moveSpeed);
+            _rotator = new Rotator(this.transform, turnSpeed);
         }
 
         private void Update()
@@ -35,6 +38,8 @@ namespace PanteonTestProject.Controllers
             {
                 _jump.IsJump = true;
             }
+
+            _rotator.Tick(_input.MouseX);
         }
 
         private void FixedUpdate()

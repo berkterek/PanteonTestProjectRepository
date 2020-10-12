@@ -9,17 +9,13 @@ namespace PanteonTestProject.Movements
     {
         CharacterController _characterController;
         Jump _jump;
-        //IPlayerInput _input;
         float _moveSpeed;
-        //float _gravity = 0.5f;
-        //float _jumpForce = 0.2f;
         
         Vector3 _currentMovement;
 
         public Mover(CharacterController characterController, Jump jump, float moveSpeed)
         {
             _characterController = characterController;
-            //_input = input;
             _moveSpeed = moveSpeed;
             _jump = jump;
         }
