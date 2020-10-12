@@ -317,7 +317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: GameCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,12 +395,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.22486597, y: -0.0052633598, z: 0.0012155762, w: -0.9743747}
+  m_LocalPosition: {x: -0.0049256496, y: 0.5414313, z: -3.5053926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1307801817
 GameObject:
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 1307801819}
   - component: {fileID: 1307801820}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,10 +430,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.11, z: -2.839}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1526629850}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1307801819
 CapsuleCollider:
@@ -472,7 +471,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1307801818}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
@@ -482,27 +481,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: 0.009999998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.839
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
@@ -512,7 +511,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
         type: 3}
@@ -586,12 +585,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41e2b3a5c6628504a81be04b1e6dcbe1, type: 3}
---- !u!4 &1526629850 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 41e2b3a5c6628504a81be04b1e6dcbe1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1526629849}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852649504
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852649505}
   m_Layer: 0
-  m_Name: Floor (1)
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 1852649504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.007964, z: -0.51832}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 311213761}
   m_Father: {fileID: 0}
