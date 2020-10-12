@@ -26,7 +26,7 @@ namespace PanteonTestProject.Controllers
         {
             _input = new PcInput();
             _jump = new Jump(gravity,jumpForce);
-            _mover = new Mover(GetComponent<CharacterController>(),_jump,moveSpeed);
+            _mover = new Mover(GetComponent<CharacterController>(), _jump,moveSpeed);
             _rotator = new Rotator(this.transform, turnSpeed);
         }
 
