@@ -25,6 +25,8 @@ namespace PanteonTestProject.Controllers
         Jump _jump;
         float _vertical;
 
+        public bool IsTouchDeadZone { get; set; }
+
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -35,8 +37,15 @@ namespace PanteonTestProject.Controllers
             _rotator = new Rotator(this.transform, turnSpeed);
         }
 
+        private void Start()
+        {
+            IsTouchDeadZone = false;
+        }
+
         private void Update()
         {
+            if (IsTouchDeadZone) return;
+            
             _vertical = _input.Vertical;
 
             if (_input.Jump && _characterController.isGrounded)
@@ -49,7 +58,11 @@ namespace PanteonTestProject.Controllers
 
         private void FixedUpdate()
         {
-            _mover.TickFixed(_vertical);
+            if (_characterController != null)
+            {
+                _mover.TickFixed(_vertical);
+            }
+            
             _animator.MoveLocomotion(_vertical);
             _animator.JumpAnimation(_jump.IsJump && !_characterController.isGrounded);
 
@@ -57,6 +70,11 @@ namespace PanteonTestProject.Controllers
             {
                 _jump.IsJump = false;
             }
+        }
+
+        public void SetPosition(Vector3 newPosition)
+        {
+            _mover.SetStartPosition(newPosition);
         }
     }
 }
