@@ -1,5 +1,6 @@
 ﻿using PanteonTestProject.Abstracts.Inputs;
 using PanteonTestProject.Abstracts.Movements;
+using PanteonTestProject.Animations;
 using PanteonTestProject.Inputs;
 using PanteonTestProject.Movements;
 using System.Collections;
@@ -19,6 +20,7 @@ namespace PanteonTestProject.Controllers
         IPlayerInput _input;
         IMover _mover;
         IRotator _rotator;
+        CharacterAnimation _animator;
         Jump _jump;
         float _vertical;
 
@@ -26,6 +28,7 @@ namespace PanteonTestProject.Controllers
         {
             _input = new PcInput();
             _jump = new Jump(gravity,jumpForce);
+            _animator = new CharacterAnimation(GetComponent<Animator>());
             _mover = new Mover(GetComponent<CharacterController>(), _jump,moveSpeed);
             _rotator = new Rotator(this.transform, turnSpeed);
         }
@@ -45,6 +48,7 @@ namespace PanteonTestProject.Controllers
         private void FixedUpdate()
         {
             _mover.TickFixed(_vertical);
+            _animator.MoveLocomotion(_vertical);
         }
     }
 }
