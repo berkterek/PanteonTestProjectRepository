@@ -15,7 +15,18 @@ namespace PanteonTestProject.Animations
 
         public void MoveLocomotion(float moveSpeed)
         {
-            _animator.SetFloat("moveSpeed", Mathf.Abs(moveSpeed));
+            if (moveSpeed != _animator.GetFloat("moveSpeed"))
+            {
+                _animator.SetFloat("moveSpeed", Mathf.Abs(moveSpeed));
+            }
+        }
+
+        public void JumpAnimation(bool isJump)
+        {
+            if (_animator.GetBool("isJump") != isJump)
+            {
+                _animator.SetBool("isJump", isJump);
+            }
         }
     }
 }

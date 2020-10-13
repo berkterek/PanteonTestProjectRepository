@@ -12,24 +12,26 @@ namespace PanteonTestProject.Controllers
     public class PlayerController : MonoBehaviour
     {
         [Header("Movements")]
-        [SerializeField] float gravity = 0.5f;
-        [SerializeField] float jumpForce = 0.2f;
-        [SerializeField] float moveSpeed = 10f;
-        [SerializeField] float turnSpeed = 5f;
+        [SerializeField] float gravity = 0.5f; //0.5f
+        [SerializeField] float jumpForce = 0.2f; //0.11f
+        [SerializeField] float moveSpeed = 10f; //2f
+        [SerializeField] float turnSpeed = 5f; //100f
 
         IPlayerInput _input;
         IMover _mover;
         IRotator _rotator;
         CharacterAnimation _animator;
+        CharacterController _characterController;
         Jump _jump;
         float _vertical;
 
         private void Awake()
         {
+            _characterController = GetComponent<CharacterController>();
             _input = new PcInput();
-            _jump = new Jump(gravity,jumpForce);
+            _jump = new Jump(gravity, jumpForce);
             _animator = new CharacterAnimation(GetComponent<Animator>());
-            _mover = new Mover(GetComponent<CharacterController>(), _jump,moveSpeed);
+            _mover = new Mover(_characterController, _jump, moveSpeed);
             _rotator = new Rotator(this.transform, turnSpeed);
         }
 
@@ -37,7 +39,7 @@ namespace PanteonTestProject.Controllers
         {
             _vertical = _input.Vertical;
 
-            if (_input.Jump)
+            if (_input.Jump && _characterController.isGrounded)
             {
                 _jump.IsJump = true;
             }
@@ -49,6 +51,12 @@ namespace PanteonTestProject.Controllers
         {
             _mover.TickFixed(_vertical);
             _animator.MoveLocomotion(_vertical);
+            _animator.JumpAnimation(_jump.IsJump && !_characterController.isGrounded);
+
+            if (_jump.IsJump)
+            {
+                _jump.IsJump = false;
+            }
         }
     }
 }

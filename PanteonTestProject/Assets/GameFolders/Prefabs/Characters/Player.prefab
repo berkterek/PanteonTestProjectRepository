@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 0.5
-  jumpForce: 0.1
+  jumpForce: 0.11
   moveSpeed: 2
   turnSpeed: 100
 --- !u!1001 &7072970655253156084

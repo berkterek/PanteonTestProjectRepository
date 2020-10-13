@@ -22,6 +22,8 @@ namespace PanteonTestProject.Movements
 
         public void TickFixed(float vertical)
         {
+            if (vertical == 0f) return;
+
             Vector3 transformDirection = _characterController.transform.TransformDirection(0f, 0f,vertical);
             Vector3 flatMovement = transformDirection * Time.deltaTime * _moveSpeed;
             _currentMovement = new Vector3(flatMovement.x, _currentMovement.y, flatMovement.z);
@@ -29,7 +31,6 @@ namespace PanteonTestProject.Movements
             if (_jump.IsJump)
             {
                 _currentMovement.y = _jump.JumpForce;
-                _jump.IsJump = false;
             }
             else if (_characterController.isGrounded)
             {
