@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace PanteonTestProject.Controllers
 {
-    public class DeadZoneController : MonoBehaviour
+    public class ObsticleController : MonoBehaviour
     {
         [SerializeField] StartLineController startController;
+        [SerializeField] float waitTime = 0.5f;
 
         private void OnTriggerEnter(Collider collider)
         {
@@ -25,7 +26,7 @@ namespace PanteonTestProject.Controllers
             playerController.transform.position = startController.GetStartPosition();
             playerController.SetPosition(startController.GetStartPosition());
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(waitTime);
 
             playerController.IsTouchDeadZone = false;
             playerController.GetComponent<CharacterController>().enabled = true;
