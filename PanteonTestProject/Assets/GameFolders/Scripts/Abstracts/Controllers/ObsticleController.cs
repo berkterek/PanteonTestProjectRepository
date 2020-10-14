@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using PanteonTestProject.Controllers;
+using System.Collections;
 using UnityEngine;
 
-namespace PanteonTestProject.Controllers
+namespace PanteonTestProject.Abstracts.Controllers
 {
-    public class ObsticleController : MonoBehaviour
+    public abstract class ObsticleController : MonoBehaviour
     {
+        [Header("Touch Settings")]
         [SerializeField] StartLineController startController;
         [SerializeField] float waitTime = 0.5f;
 
@@ -17,7 +18,7 @@ namespace PanteonTestProject.Controllers
             {
                 StartCoroutine(WaitAndProcess(playerController));
             }
-        }
+        }        
 
         private IEnumerator WaitAndProcess(PlayerController playerController)
         {

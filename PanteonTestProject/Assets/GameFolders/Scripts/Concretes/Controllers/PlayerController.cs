@@ -11,7 +11,7 @@ namespace PanteonTestProject.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Movements")]
+        [Header("Movement Settings")]
         [SerializeField] float gravity = 0.5f; //0.5f
         [SerializeField] float jumpForce = 0.2f; //0.11f
         [SerializeField] float moveSpeed = 10f; //2f
