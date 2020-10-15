@@ -32,7 +32,6 @@ namespace PanteonTestProject.Controllers
             }
             
             playerController.GetComponent<CharacterController>().enabled = true;
-            
         }
     }
 }

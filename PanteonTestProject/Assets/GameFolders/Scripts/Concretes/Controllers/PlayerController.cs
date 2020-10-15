@@ -3,8 +3,6 @@ using PanteonTestProject.Abstracts.Movements;
 using PanteonTestProject.Animations;
 using PanteonTestProject.Inputs;
 using PanteonTestProject.Movements;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PanteonTestProject.Controllers
@@ -19,7 +17,7 @@ namespace PanteonTestProject.Controllers
         [SerializeField] float maxDistance = 1f;
         [SerializeField] LayerMask layerMask;
 
-        [Header("Transform Settins")]
+        [Header("Transforms")]
         [SerializeField] Transform footTransform;
 
         IPlayerInput _input;
