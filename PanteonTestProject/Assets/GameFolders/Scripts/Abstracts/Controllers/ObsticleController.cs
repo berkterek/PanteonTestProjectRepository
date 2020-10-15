@@ -10,7 +10,7 @@ namespace PanteonTestProject.Abstracts.Controllers
         [SerializeField] StartLineController startController;
         [SerializeField] float waitTime = 0.5f;
 
-        private void OnTriggerEnter(Collider collider)
+        protected virtual void OnTriggerEnter(Collider collider)
         {
             PlayerController playerController = collider.GetComponent<PlayerController>();
 
@@ -20,7 +20,7 @@ namespace PanteonTestProject.Abstracts.Controllers
             }
         }        
 
-        private IEnumerator WaitAndProcess(PlayerController playerController)
+        protected virtual IEnumerator WaitAndProcess(PlayerController playerController)
         {
             playerController.GetComponent<CharacterController>().enabled = false;
             playerController.IsTouchDeadZone = true;
