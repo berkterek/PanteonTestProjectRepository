@@ -16,12 +16,18 @@ namespace PanteonTestProject.Controllers
         [SerializeField] float jumpForce = 0.2f; //0.11f
         [SerializeField] float moveSpeed = 10f; //2f
         [SerializeField] float turnSpeed = 5f; //100f
+        [SerializeField] float maxDistance = 1f;
+        [SerializeField] LayerMask layerMask;
+
+        [Header("Transform Settins")]
+        [SerializeField] Transform footTransform;
 
         IPlayerInput _input;
         IMover _mover;
         IRotator _rotator;
         CharacterAnimation _animator;
         CharacterController _characterController;
+        TouchOnRollGround _touchOnRollGround;
         Jump _jump;
         float _vertical;
 
@@ -35,6 +41,7 @@ namespace PanteonTestProject.Controllers
             _animator = new CharacterAnimation(GetComponent<Animator>());
             _mover = new Mover(_characterController, _jump, moveSpeed);
             _rotator = new Rotator(this.transform, turnSpeed);
+            _touchOnRollGround = new TouchOnRollGround(footTransform,layerMask);
         }
 
         private void Start()
@@ -58,10 +65,7 @@ namespace PanteonTestProject.Controllers
 
         private void FixedUpdate()
         {
-            if (_characterController != null)
-            {
-                _mover.TickFixed(_vertical);
-            }
+            _mover.TickFixed(_vertical);
             
             _animator.MoveLocomotion(_vertical);
             _animator.JumpAnimation(_jump.IsJump && !_characterController.isGrounded);
@@ -70,6 +74,8 @@ namespace PanteonTestProject.Controllers
             {
                 _jump.IsJump = false;
             }
+
+            _touchOnRollGround.TouchOnGround(this.transform,maxDistance);
         }
 
         public void SetPosition(Vector3 newPosition)
