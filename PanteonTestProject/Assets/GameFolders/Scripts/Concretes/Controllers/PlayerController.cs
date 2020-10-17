@@ -28,6 +28,7 @@ namespace PanteonTestProject.Controllers
         TouchOnRollGround _touchOnRollGround;
         Jump _jump;
         float _vertical;
+        bool _isRaceFinish;
 
         public bool IsTouchDeadZone { get; set; }
 
@@ -45,11 +46,22 @@ namespace PanteonTestProject.Controllers
         private void Start()
         {
             IsTouchDeadZone = false;
+            _isRaceFinish = false;
+        }
+
+        private void OnEnable()
+        {
+            FindObjectOfType<FinishLineController>().OnRaceFinished += HandleFinishRace;
+        }
+
+        private void OnDisable()
+        {
+            FindObjectOfType<FinishLineController>().OnRaceFinished -= HandleFinishRace;
         }
 
         private void Update()
         {
-            if (IsTouchDeadZone) return;
+            if (IsTouchDeadZone || _isRaceFinish) return;
             
             _vertical = _input.Vertical;
 
@@ -79,6 +91,13 @@ namespace PanteonTestProject.Controllers
         public void SetPosition(Vector3 newPosition)
         {
             _mover.SetStartPosition(newPosition);
+        }
+
+        private void HandleFinishRace()
+        {
+            _isRaceFinish = true;
+            _vertical = 0f;
+            _animator.MoveLocomotion(0f);
         }
     }
 }
