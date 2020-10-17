@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8238447696596339171}
   - component: {fileID: 8238447696596339170}
   - component: {fileID: 8238447696596339173}
+  - component: {fileID: 3736238708609549905}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -64,3 +65,22 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!95 &3736238708609549905
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238447696596339168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: feafbb764bc6a7943a39bbda369b4d51, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
