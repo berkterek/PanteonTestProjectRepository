@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4138625884233863407}
   - component: {fileID: 4138625884233863401}
   - component: {fileID: 4138625884233863400}
+  - component: {fileID: 3205349275293476418}
   m_Layer: 5
   m_Name: RedPaintingImage
   m_TagString: Untagged
@@ -74,3 +75,15 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3205349275293476418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138625884233863406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773ae3fa49f39974495f6a84af901364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

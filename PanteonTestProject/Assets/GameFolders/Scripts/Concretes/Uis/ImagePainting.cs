@@ -8,23 +8,23 @@ namespace PanteonTestProject.Uis
 {
     public class ImagePainting : MonoBehaviour, IPointerDownHandler,IPointerUpHandler,IDragHandler,IPointerExitHandler
     {
-        [SerializeField] Image paintingImage;
+        [SerializeField] RedPaintingImage paintingImage;
         [SerializeField] float currentPaintAmount = 0.2f;
 
         public void OnDrag(PointerEventData eventData)
         {
             if (paintingImage != null)
             {
-                if (paintingImage.fillAmount != 1f)
+                if (!paintingImage.IsFull)
                 {
-                    paintingImage.fillAmount += currentPaintAmount;
+                    paintingImage.FillAmount += currentPaintAmount;
                 }
             }
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            paintingImage = eventData.pointerCurrentRaycast.gameObject?.GetComponent<Image>();
+            paintingImage = eventData.pointerCurrentRaycast.gameObject?.GetComponent<RedPaintingImage>();
         }
 
         public void OnPointerUp(PointerEventData eventData)
