@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PanteonTestProject.Abstracts.Controllers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +7,15 @@ namespace PanteonTestProject.Controllers
 {
     public class HalfTriggeredController : MonoBehaviour
     {
-        public event System.Action<PlayerController> OnTriggered;
+        public event System.Action<EntityController> OnTriggered;
 
         private void OnTriggerEnter(Collider other)
         {
-            PlayerController playerController = other.GetComponent<PlayerController>();
+            EntityController entityController = other.GetComponent<EntityController>();
 
-            if (playerController != null)
+            if (entityController != null)
             {
-                OnTriggered?.Invoke(playerController);
+                OnTriggered?.Invoke(entityController);
             }
         }
     }

@@ -20,9 +20,9 @@ namespace PanteonTestProject.Controllers
             }
         }
 
-        private void HandleOnTriggered(PlayerController playerController)
+        private void HandleOnTriggered(EntityController entityController)
         {
-            StartCoroutine(WaitAndProcess(playerController));
+            StartCoroutine(WaitAndProcess(entityController));
         }
 
         private void FixedUpdate()

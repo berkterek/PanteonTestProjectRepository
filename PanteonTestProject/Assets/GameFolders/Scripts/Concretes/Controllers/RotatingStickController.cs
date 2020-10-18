@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PanteonTestProject.Abstracts.Controllers;
+using System.Collections;
 using UnityEngine;
 
 namespace PanteonTestProject.Controllers
@@ -11,27 +12,27 @@ namespace PanteonTestProject.Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            PlayerController playerController = other.GetComponent<PlayerController>();
+            EntityController entityController = other.GetComponent<EntityController>();
 
-            if (playerController != null)
+            if (entityController != null)
             {
-                StartCoroutine(PushBack(playerController));
+                StartCoroutine(PushBack(entityController));
             }
         }
 
-        private IEnumerator PushBack(PlayerController playerController)
+        private IEnumerator PushBack(EntityController entityController)
         {
-            playerController.GetComponent<CharacterController>().enabled = false;
+            entityController.GetComponent<CharacterController>().enabled = false;
 
             int i = 0;
             while (i < maxLoop)
             {
-                playerController.transform.position += -playerController.transform.forward * pushForce * Time.deltaTime;
+                entityController.transform.position += -entityController.transform.forward * pushForce * Time.deltaTime;
                 i++;
                 yield return new WaitForSeconds(waitTime);
             }
-            
-            playerController.GetComponent<CharacterController>().enabled = true;
+
+            entityController.GetComponent<CharacterController>().enabled = true;
         }
     }
 }

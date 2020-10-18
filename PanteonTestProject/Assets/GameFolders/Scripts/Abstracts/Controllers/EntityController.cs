@@ -53,10 +53,10 @@ namespace PanteonTestProject.Abstracts.Controllers
             FindObjectOfType<FinishLineController>().OnRaceFinished += HandleFinishRace;
         }
 
-        protected virtual void OnDisable()
-        {
-            FindObjectOfType<FinishLineController>().OnRaceFinished -= HandleFinishRace;
-        }
+        //protected virtual void OnDisable()
+        //{
+        //    FindObjectOfType<FinishLineController>().OnRaceFinished -= HandleFinishRace;
+        //}
 
         protected abstract void HandleFinishRace();
 

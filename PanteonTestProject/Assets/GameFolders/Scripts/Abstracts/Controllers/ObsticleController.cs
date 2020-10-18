@@ -12,25 +12,25 @@ namespace PanteonTestProject.Abstracts.Controllers
 
         protected virtual void OnTriggerEnter(Collider collider)
         {
-            PlayerController playerController = collider.GetComponent<PlayerController>();
+            EntityController entityController = collider.GetComponent<EntityController>();
 
-            if (playerController != null)
+            if (entityController != null)
             {
-                StartCoroutine(WaitAndProcess(playerController));
+                StartCoroutine(WaitAndProcess(entityController));
             }
         }        
 
-        protected virtual IEnumerator WaitAndProcess(PlayerController playerController)
+        protected virtual IEnumerator WaitAndProcess(EntityController entityController)
         {
-            playerController.GetComponent<CharacterController>().enabled = false;
-            playerController.IsTouchDeadZone = true;
-            playerController.transform.position = startController.GetStartPosition();
-            playerController.SetPosition(startController.GetStartPosition());
+            entityController.GetComponent<CharacterController>().enabled = false;
+            entityController.IsTouchDeadZone = true;
+            entityController.transform.position = startController.GetStartPosition();
+            entityController.SetPosition(startController.GetStartPosition());
 
             yield return new WaitForSeconds(waitTime);
 
-            playerController.IsTouchDeadZone = false;
-            playerController.GetComponent<CharacterController>().enabled = true;
+            entityController.IsTouchDeadZone = false;
+            entityController.GetComponent<CharacterController>().enabled = true;
         }
     }
 }
