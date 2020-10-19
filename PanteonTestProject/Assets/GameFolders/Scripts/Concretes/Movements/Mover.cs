@@ -13,6 +13,8 @@ namespace PanteonTestProject.Movements
         
         Vector3 _currentMovement;
 
+        public Transform Transform => _characterController.transform;
+
         public Mover(CharacterController characterController, Jump jump, float moveSpeed)
         {
             _characterController = characterController;

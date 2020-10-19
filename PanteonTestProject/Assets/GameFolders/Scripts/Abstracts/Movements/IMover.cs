@@ -6,5 +6,6 @@ namespace PanteonTestProject.Abstracts.Movements
     {
         void TickFixed(float vertical);
         void SetStartPosition(Vector3 newPosition);
+        Transform Transform { get; }
     }
 }

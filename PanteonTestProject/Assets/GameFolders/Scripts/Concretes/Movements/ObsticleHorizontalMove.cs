@@ -11,6 +11,8 @@ namespace PanteonTestProject.Movements
     {
         ObsticleController _controller;
 
+        public Transform Transform => _controller.transform;
+
         public ObsticleHorizontalMove(ObsticleController controller)
         {
             _controller = controller;

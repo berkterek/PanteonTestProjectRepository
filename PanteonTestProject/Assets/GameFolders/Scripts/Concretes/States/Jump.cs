@@ -24,7 +24,6 @@ namespace PanteonTestProject.States
 
         public void Enter()
         {
-            Debug.Log("Jump");
             if (_characterController.isGrounded)
             {
                 _jumpAction.IsJump = true;
@@ -40,7 +39,7 @@ namespace PanteonTestProject.States
 
         public void Tick()
         {
-            _mover.TickFixed(0.5f);
+            _mover.TickFixed(1f);
 
             if (_jumpAction.IsJump)
             {

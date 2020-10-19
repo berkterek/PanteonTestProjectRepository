@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PanteonTestProject.Movements
@@ -9,11 +10,17 @@ namespace PanteonTestProject.Movements
         [SerializeField] float maxDistance;
         [SerializeField] float radius;
         [SerializeField] LayerMask layerMask;
-        [SerializeField] bool _isAnyObsticle;
+        [SerializeField] bool _isAnyNearObsticle;
+        [SerializeField] bool _isAnyFarObsticle;
+        [SerializeField] float rayDistance = 1f;
 
-        public bool IsAnyObsticle => _isAnyObsticle;
+        public bool IsAnyNearObsticle => _isAnyNearObsticle;
+        public bool IsAnyFarObsticle => _isAnyFarObsticle;
+        public bool TurnRight { get; private set; }
 
         Collider[] _hitColliders;
+        Quaternion _startingAngle = Quaternion.AngleAxis(-30, Vector3.up);
+        Quaternion _steptingAngle = Quaternion.AngleAxis(5, Vector3.up);
 
         private void Awake()
         {
@@ -22,7 +29,8 @@ namespace PanteonTestProject.Movements
 
         private void Update()
         {
-            CheckObsticles();
+            CheckForGeneralObsticle();
+            CheckNearObsticles();
         }
 
         private void OnDrawGizmos()
@@ -36,7 +44,7 @@ namespace PanteonTestProject.Movements
             Gizmos.DrawWireSphere(transform.position, radius);
         }
 
-        private void CheckObsticles()
+        private void CheckNearObsticles()
         {
              _hitColliders = Physics.OverlapSphere(transform.position, radius, layerMask);
 
@@ -44,12 +52,47 @@ namespace PanteonTestProject.Movements
             {
                 if (collider != null)
                 {
-                    _isAnyObsticle = true;
+                    _isAnyNearObsticle = true;
                     return;
                 }
             }
 
-            _isAnyObsticle = false;
+            _isAnyNearObsticle = false;
+        }
+
+        //private bool CheckFarObsticles()
+        //{
+        //    Ray ray = new Ray(transform.position, transform.forward);
+        //    var hitSomething = Physics.RaycastAll(ray, rayDistance, layerMask);
+        //    Debug.DrawRay(transform.position, transform.forward);
+        //    return hitSomething.Any();
+        //}
+
+        public void CheckForGeneralObsticle()
+        {
+            float obsticleRadius = 0.5f;
+
+            RaycastHit hit;
+            var angle = transform.rotation * _startingAngle;
+            var direction = angle * Vector3.forward;
+            var position = transform.position;
+
+            for (int i = 0; i < 12; i++)
+            {
+                if (Physics.Raycast(position,direction,out hit,obsticleRadius))
+                {
+                    Debug.DrawRay(position, direction * hit.distance, Color.red);
+                    _isAnyFarObsticle = true;
+
+                    TurnRight = i < 5;
+
+                    return;
+                }
+
+                direction = _steptingAngle * direction;
+            }
+
+            _isAnyFarObsticle = false;
         }
     }
 }

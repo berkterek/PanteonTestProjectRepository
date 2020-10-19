@@ -32,7 +32,6 @@ namespace PanteonTestProject.States
 
         public void Enter()
         {
-            Debug.Log("Idle");
             _maxTime = Random.Range(2f, 5f);
             _animator.MoveLocomotion(0f);
         }

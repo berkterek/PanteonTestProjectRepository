@@ -13,38 +13,46 @@ namespace PanteonTestProject.States
         CharacterAnimation _animator;
         IMover _mover;
         TouchOnRollGround _touchOnRollGround;
-        CharacterController _characterController;
+        Transform _target;
         System.Action _chooseAction;
 
         float _randomSpeed;
         float _maxDistance;
+        float _lookTime = 0;
 
-        public Walk(CharacterAnimation animator, CharacterController characterController, IMover mover, TouchOnRollGround touchOnRollGround, float maxDistance, System.Action chooseAction)
+        public Walk(Transform target,CharacterAnimation animator, IMover mover, TouchOnRollGround touchOnRollGround, float maxDistance, System.Action chooseAction)
         {
             _animator = animator;
             _mover = mover;
             _maxDistance = maxDistance;
             _touchOnRollGround = touchOnRollGround;
-            _characterController = characterController;
             _chooseAction = chooseAction;
+            _target = target;
         }
 
         public void Enter()
         {
-            Debug.Log("Walk");
-            _randomSpeed = Random.Range(0.5f, 0.8f); //0.3f,1f
+            _randomSpeed = Random.Range(0.5f, 0.7f); //0.5f, 0.8f
             _animator.MoveLocomotion(_randomSpeed);
         }
 
         public void Exit()
         {
             _chooseAction.Invoke();
+            _lookTime = 0f;
         }
 
         public void Tick()
-        {            
+        {
             _mover.TickFixed(_randomSpeed);
-            _touchOnRollGround.TouchOnGround(_characterController.transform, _maxDistance);
+
+            if (_lookTime > 0.5f)
+            {
+                _mover.Transform.LookAt(_target, Vector3.up * 10);
+            }
+            
+            _touchOnRollGround.TouchOnGround(_mover.Transform, _maxDistance);
+            _lookTime += Time.deltaTime;
         }
     }
 }

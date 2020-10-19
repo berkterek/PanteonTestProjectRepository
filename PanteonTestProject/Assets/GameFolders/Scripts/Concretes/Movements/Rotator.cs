@@ -13,7 +13,6 @@ public class Rotator : IRotator
 
     public void Tick(float mouseX)
     {
-        //Debug.Log(mouseX);
         _transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * mouseX);
     }
 }
