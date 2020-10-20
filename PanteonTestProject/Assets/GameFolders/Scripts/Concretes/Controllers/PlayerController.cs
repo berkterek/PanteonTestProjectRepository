@@ -13,6 +13,11 @@ namespace PanteonTestProject.Controllers
             _input = new PcInput();
             base.Awake();
         }
+        
+        private void OnEnable()
+        {
+            FindObjectOfType<FinishLineController>().OnRaceFinished += HandleFinishRace;
+        }
 
         private void Update()
         {

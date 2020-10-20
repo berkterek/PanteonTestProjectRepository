@@ -33,13 +33,14 @@ namespace PanteonTestProject.Controllers
             NewStart newStart = new NewStart(this.transform);
             States.Jump jump = new States.Jump(_animator,_characterController,_mover,_jump);
             Turn turn = new Turn(_rotator, _mover, _checkObsticle);
+            FinishRace finishRace = new FinishRace();
 
             _npcStateMachine.AddStateTransition(idle, walk, () => !idle.IsIdle);
             _npcStateMachine.AddStateTransition(jump, walk, () => !_jump.IsJump);
             _npcStateMachine.AddStateTransition(turn, walk, () => !_checkObsticle.IsAnyFarObsticle);
 
             _npcStateMachine.AddStateTransition(walk, idle, () =>
-            _checkObsticle.IsAnyNearObsticle && _chooseState == ChooseState.Idle);
+            _checkObsticle.IsAnyNearObsticle && _checkObsticle.Obsticle is HorizontalObsticleController);
             
             _npcStateMachine.AddStateTransition(walk, jump, () =>
             _checkObsticle.IsAnyNearObsticle && _chooseState == ChooseState.Jump);
@@ -50,6 +51,7 @@ namespace PanteonTestProject.Controllers
             _npcStateMachine.AddStateTransition(newStart, idle, () => !newStart.IsNewStart);
 
             _npcStateMachine.AddAnyStateTransition(newStart, () => IsTouchDeadZone);
+            _npcStateMachine.AddAnyStateTransition(finishRace, () => _isRaceFinish);
 
             _npcStateMachine.SetState(idle);
         }
@@ -59,27 +61,26 @@ namespace PanteonTestProject.Controllers
             _npcStateMachine.Tick();
         }
 
-        protected override void HandleFinishRace()
-        {
-            Debug.Log(this.gameObject.name + " finish race");
-        }
-
         private void ChooseWalkToAnotherState()
         {
-            int index = Random.Range(0, 3);
-
-            _chooseState = ChooseState.Turn;
+            int index = Random.Range(0, 2);
+            
             switch (index)
             {
                 case 0:
-                    _chooseState = ChooseState.Idle;
+                    _chooseState = ChooseState.Turn;
                     break;
                 case 1:
                     _chooseState = ChooseState.Jump;
                     break;
-                default:
-                    _chooseState = ChooseState.Turn;
-                    break;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<FinishLineController>() != null)
+            {
+                HandleFinishRace();
             }
         }
     }

@@ -10,7 +10,10 @@ namespace PanteonTestProject.Controllers
 
         private void OnTriggerExit(Collider other)
         {
-            OnRaceFinished?.Invoke();
+            if (other.GetComponent<PlayerController>() != null)
+            {
+                OnRaceFinished?.Invoke();
+            }
         }
     }
 }

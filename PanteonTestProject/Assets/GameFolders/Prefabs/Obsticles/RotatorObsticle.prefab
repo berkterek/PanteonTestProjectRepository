@@ -152,7 +152,7 @@ PrefabInstance:
     - target: {fileID: 7297431396063872376, guid: 5438894bc6d0e2543857d8d54aa31834,
         type: 3}
       propertyPath: m_Name
-      value: RotatorObsticle (1)
+      value: RotatorObsticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5438894bc6d0e2543857d8d54aa31834, type: 3}
@@ -255,6 +255,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RotatingStick
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 476621e85c4fa984e99bb6f7807a3b41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476621e85c4fa984e99bb6f7807a3b41, type: 3}
 --- !u!1 &8404503398304634967 stripped
@@ -350,6 +355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RotatingStick (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 476621e85c4fa984e99bb6f7807a3b41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476621e85c4fa984e99bb6f7807a3b41, type: 3}
 --- !u!1 &8404503397201827579 stripped
@@ -444,6 +454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b5369ba161fa174dabc48803bfc69fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b5369ba161fa174dabc48803bfc69fc, type: 3}

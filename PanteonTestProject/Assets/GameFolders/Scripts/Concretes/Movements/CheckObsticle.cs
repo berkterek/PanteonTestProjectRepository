@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PanteonTestProject.Abstracts.Controllers;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,16 +8,17 @@ namespace PanteonTestProject.Movements
 {
     public class CheckObsticle : MonoBehaviour
     {
-        [SerializeField] float maxDistance;
+        //[SerializeField] float maxDistance;
         [SerializeField] float radius;
         [SerializeField] LayerMask layerMask;
-        [SerializeField] bool _isAnyNearObsticle;
-        [SerializeField] bool _isAnyFarObsticle;
-        [SerializeField] float rayDistance = 1f;
+        [SerializeField] bool isAnyNearObsticle;
+        [SerializeField] bool isAnyFarObsticle;
+        //[SerializeField] float rayDistance = 1f;
 
-        public bool IsAnyNearObsticle => _isAnyNearObsticle;
-        public bool IsAnyFarObsticle => _isAnyFarObsticle;
+        public bool IsAnyNearObsticle => isAnyNearObsticle;
+        public bool IsAnyFarObsticle => isAnyFarObsticle;
         public bool TurnRight { get; private set; }
+        public ObsticleController Obsticle { get; private set; }
 
         Collider[] _hitColliders;
         Quaternion _startingAngle = Quaternion.AngleAxis(-30, Vector3.up);
@@ -52,12 +54,12 @@ namespace PanteonTestProject.Movements
             {
                 if (collider != null)
                 {
-                    _isAnyNearObsticle = true;
+                    isAnyNearObsticle = true;
                     return;
                 }
             }
 
-            _isAnyNearObsticle = false;
+           isAnyNearObsticle = false;
         }
 
         //private bool CheckFarObsticles()
@@ -82,17 +84,29 @@ namespace PanteonTestProject.Movements
                 if (Physics.Raycast(position,direction,out hit,obsticleRadius))
                 {
                     Debug.DrawRay(position, direction * hit.distance, Color.red);
-                    _isAnyFarObsticle = true;
+                   isAnyFarObsticle = true;
 
-                    TurnRight = i < 5;
-
+                    if (i < 6)
+                    {
+                        TurnRight = true;
+                    }
+                    else if(i == 6)
+                    {
+                        TurnRight = Random.Range(0f, 100f) < 50;
+                    }
+                    else
+                    {
+                        TurnRight = false;
+                    }
+                    
+                    Obsticle = hit.collider.GetComponent<ObsticleController>();
                     return;
                 }
 
                 direction = _steptingAngle * direction;
             }
 
-            _isAnyFarObsticle = false;
+            isAnyFarObsticle = false;
         }
     }
 }

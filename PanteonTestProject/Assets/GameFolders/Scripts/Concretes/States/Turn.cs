@@ -21,7 +21,15 @@ public class Turn : IState
 
     public void Enter()
     {
-        _turnSpeed *= _checkObsticle.TurnRight ? 1 : -1;
+        //_turnSpeed *= _checkObsticle.TurnRight ? 1 : -1;
+        if (_checkObsticle.TurnRight)
+        {
+            _turnSpeed = 100;
+        }
+        else
+        {
+            _turnSpeed = -100;
+        }
     }
 
     public void Exit()
@@ -32,7 +40,7 @@ public class Turn : IState
     {
         if (_checkObsticle.IsAnyFarObsticle)
         {
-            _rotator.Tick(100 * Time.deltaTime);
+            _rotator.Tick(_turnSpeed * Time.deltaTime);
         }
 
         _mover.TickFixed(0.3f);

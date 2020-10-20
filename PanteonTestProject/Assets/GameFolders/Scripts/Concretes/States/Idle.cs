@@ -32,7 +32,7 @@ namespace PanteonTestProject.States
 
         public void Enter()
         {
-            _maxTime = Random.Range(2f, 5f);
+            _maxTime = Random.Range(1f, 3f);
             _animator.MoveLocomotion(0f);
         }
 

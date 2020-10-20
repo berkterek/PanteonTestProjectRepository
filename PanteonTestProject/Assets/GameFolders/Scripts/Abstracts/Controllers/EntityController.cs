@@ -48,17 +48,12 @@ namespace PanteonTestProject.Abstracts.Controllers
             _isRaceFinish = false;
         }
 
-        protected virtual void OnEnable()
+        protected virtual void HandleFinishRace()
         {
-            FindObjectOfType<FinishLineController>().OnRaceFinished += HandleFinishRace;
+            _isRaceFinish = true;
+            _vertical = 0f;
+            _animator.MoveLocomotion(0f);
         }
-
-        //protected virtual void OnDisable()
-        //{
-        //    FindObjectOfType<FinishLineController>().OnRaceFinished -= HandleFinishRace;
-        //}
-
-        protected abstract void HandleFinishRace();
 
         public void SetPosition(Vector3 newPosition)
         {
