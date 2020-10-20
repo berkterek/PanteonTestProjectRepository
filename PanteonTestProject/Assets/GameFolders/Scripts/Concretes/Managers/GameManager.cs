@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace PanteonTestProject.Managers
 {
@@ -24,6 +26,17 @@ namespace PanteonTestProject.Managers
             {
                 Destroy(this.gameObject);
             }
+        }
+
+        public void StartGame()
+        {
+            StartCoroutine(StartGameAsync());
+        }
+
+        private IEnumerator StartGameAsync()
+        {
+            yield return new WaitForSeconds(2f);
+            yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex,LoadSceneMode.Single);
         }
     }
 }

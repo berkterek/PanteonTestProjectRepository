@@ -22,10 +22,10 @@ namespace PanteonTestProject.Uis
             FindObjectOfType<FinishLineController>().OnRaceFinished += EnableImages;
         }
 
-        private void OnDisable()
-        {
-            FindObjectOfType<FinishLineController>().OnRaceFinished -= EnableImages;
-        }
+        //private void OnDisable()
+        //{
+        //    FindObjectOfType<FinishLineController>().OnRaceFinished -= EnableImages;
+        //}
 
         private void EnableImages()
         {

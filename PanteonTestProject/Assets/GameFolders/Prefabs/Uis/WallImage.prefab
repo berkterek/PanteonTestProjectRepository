@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8615460188106079005}
   - component: {fileID: 8615460188106079006}
   - component: {fileID: 8615460188106079004}
+  - component: {fileID: 7077409952694175444}
   m_Layer: 5
   m_Name: WallImage
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintingImage: {fileID: 0}
   currentPaintAmount: 0.01
+--- !u!114 &7077409952694175444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615460188106079000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a70bfc150b024eb0d196ecc07d4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5692296167571786287
 PrefabInstance:
   m_ObjectHideFlags: 0
