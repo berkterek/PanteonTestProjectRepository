@@ -12,7 +12,7 @@ namespace PanteonTestProject.Managers
         
         RedPaintingImage[] _imagePaintings;
 
-        public bool IsFull => _isFull;
+        //public bool IsFull => _isFull;
 
         private void Awake()
         {

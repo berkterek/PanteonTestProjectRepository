@@ -21,6 +21,8 @@ namespace PanteonTestProject.Abstracts.Controllers
         [Header("Transforms")]
         [SerializeField] Transform footTransform;
 
+        public bool IsRaceFinish => _isRaceFinish;
+
         protected IMover _mover;
         protected IRotator _rotator;
         protected CharacterAnimation _animator;

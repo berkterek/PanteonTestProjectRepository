@@ -46,7 +46,7 @@ namespace PanteonTestProject.States
         {
             _mover.TickFixed(_randomSpeed);
 
-            if (_lookTime > 0.5f)
+            if (_lookTime > 0.4f)
             {
                 _mover.Transform.LookAt(_target, Vector3.up * 10);
             }
