@@ -1,9 +1,8 @@
 ﻿using PanteonTestProject.Abstracts.Controllers;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
 using PanteonTestProject.Controllers;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace PanteonTestProject.Managers
 {

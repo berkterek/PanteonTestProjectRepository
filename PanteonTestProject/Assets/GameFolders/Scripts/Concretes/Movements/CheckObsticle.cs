@@ -1,19 +1,14 @@
 ﻿using PanteonTestProject.Abstracts.Controllers;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace PanteonTestProject.Movements
 {
     public class CheckObsticle : MonoBehaviour
     {
-        //[SerializeField] float maxDistance;
         [SerializeField] float radius;
         [SerializeField] LayerMask layerMask;
         [SerializeField] bool isAnyNearObsticle;
         [SerializeField] bool isAnyFarObsticle;
-        //[SerializeField] float rayDistance = 1f;
 
         public bool IsAnyNearObsticle => isAnyNearObsticle;
         public bool IsAnyFarObsticle => isAnyFarObsticle;
@@ -61,14 +56,6 @@ namespace PanteonTestProject.Movements
 
            isAnyNearObsticle = false;
         }
-
-        //private bool CheckFarObsticles()
-        //{
-        //    Ray ray = new Ray(transform.position, transform.forward);
-        //    var hitSomething = Physics.RaycastAll(ray, rayDistance, layerMask);
-        //    Debug.DrawRay(transform.position, transform.forward);
-        //    return hitSomething.Any();
-        //}
 
         public void CheckForGeneralObsticle()
         {

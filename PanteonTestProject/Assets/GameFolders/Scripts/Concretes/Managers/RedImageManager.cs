@@ -1,8 +1,6 @@
 ﻿using PanteonTestProject.Uis;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace PanteonTestProject.Managers
 {
@@ -12,18 +10,25 @@ namespace PanteonTestProject.Managers
         
         RedPaintingImage[] _imagePaintings;
 
-        //public bool IsFull => _isFull;
+        public float PaintPercent => (_currentCount / _paintCount) * 100;
+
+        float _paintCount;
+        float _currentCount;
 
         private void Awake()
         {
             _imagePaintings = GetComponentsInChildren<RedPaintingImage>();
+            _paintCount = _imagePaintings.Length;
         }
 
         private void Update()
         {
+            Debug.Log(PaintPercent);
+            
             if (_isFull) return;
 
             _isFull = _imagePaintings.All(x => x.IsFull);
+            _currentCount = _imagePaintings.Count(x => x.IsFull);
 
             if (_isFull)
             {

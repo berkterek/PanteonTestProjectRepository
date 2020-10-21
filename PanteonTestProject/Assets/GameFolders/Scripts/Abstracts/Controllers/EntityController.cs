@@ -1,9 +1,6 @@
 ﻿using PanteonTestProject.Abstracts.Movements;
 using PanteonTestProject.Animations;
-using PanteonTestProject.Controllers;
 using PanteonTestProject.Movements;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PanteonTestProject.Abstracts.Controllers
