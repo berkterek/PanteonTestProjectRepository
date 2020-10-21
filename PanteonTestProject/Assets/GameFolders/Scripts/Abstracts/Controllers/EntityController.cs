@@ -29,6 +29,7 @@ namespace PanteonTestProject.Abstracts.Controllers
         protected CharacterController _characterController;
         protected TouchOnRollGround _touchOnRollGround;
         protected Jump _jump;
+        
         protected float _vertical;
         protected bool _isRaceFinish;
 
