@@ -1,5 +1,4 @@
 ﻿using PanteonTestProject.Abstracts.Controllers;
-using PanteonTestProject.Enums;
 using PanteonTestProject.Movements;
 using PanteonTestProject.States;
 using System.Collections;
@@ -14,14 +13,14 @@ namespace PanteonTestProject.Controllers
 
         NpcStateMachine _npcStateMachine;
         CheckObsticle _checkObsticle;
-        ChooseState _chooseState;
+        
+        bool _canTurn;
 
         protected override void Awake()
         {
             base.Awake();
             _npcStateMachine = new NpcStateMachine();
             _checkObsticle = GetComponent<CheckObsticle>();
-            _chooseState = ChooseState.Turn;
         }
 
         protected override void Start()
@@ -29,9 +28,9 @@ namespace PanteonTestProject.Controllers
             base.Start();
 
             Idle idle = new Idle(this.transform, _animator, _mover, _touchOnRollGround, maxDistance);
-            Walk walk = new Walk(target,_animator, _mover, _touchOnRollGround, maxDistance,ChooseWalkToAnotherState);
+            Walk walk = new Walk(target, _animator, _mover, _touchOnRollGround, maxDistance, ChooseWalkToAnotherState);
             NewStart newStart = new NewStart(this.transform);
-            States.Jump jump = new States.Jump(_animator,_characterController,_mover,_jump);
+            States.Jump jump = new States.Jump(_animator, _characterController, _mover, _jump);
             Turn turn = new Turn(_rotator, _mover, _checkObsticle);
             FinishRace finishRace = new FinishRace();
 
@@ -41,12 +40,11 @@ namespace PanteonTestProject.Controllers
 
             _npcStateMachine.AddStateTransition(walk, idle, () =>
             _checkObsticle.IsAnyNearObsticle && _checkObsticle.Obsticle is HorizontalObsticleController);
-            
+
             _npcStateMachine.AddStateTransition(walk, jump, () =>
-            _checkObsticle.IsAnyNearObsticle && _chooseState == ChooseState.Jump);
-            
-            _npcStateMachine.AddStateTransition(walk, turn, () => 
-            _chooseState == ChooseState.Turn && _checkObsticle.IsAnyFarObsticle);
+            _checkObsticle.IsAnyNearObsticle);
+
+            _npcStateMachine.AddStateTransition(walk, turn, () => _canTurn && _checkObsticle.IsAnyFarObsticle);
 
             _npcStateMachine.AddStateTransition(newStart, idle, () => !newStart.IsNewStart);
 
@@ -64,16 +62,8 @@ namespace PanteonTestProject.Controllers
         private void ChooseWalkToAnotherState()
         {
             int index = Random.Range(0, 2);
-            
-            switch (index)
-            {
-                case 0:
-                    _chooseState = ChooseState.Turn;
-                    break;
-                case 1:
-                    _chooseState = ChooseState.Jump;
-                    break;
-            }
+
+            _canTurn = index == 0;
         }
 
         private void OnTriggerExit(Collider other)
