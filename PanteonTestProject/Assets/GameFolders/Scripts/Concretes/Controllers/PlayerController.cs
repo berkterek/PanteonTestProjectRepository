@@ -10,7 +10,7 @@ namespace PanteonTestProject.Controllers
 
         protected override void Awake()
         {
-            _input = new MobileInput();
+            _input = new PcInput();
             base.Awake();
         }
         
